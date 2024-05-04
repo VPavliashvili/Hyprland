@@ -836,6 +836,8 @@ void CWindow::createGroup() {
         g_pCompositor->updateWorkspaceSpecialRenderData(workspaceID());
         g_pLayoutManager->getCurrentLayout()->recalculateMonitor(m_iMonitorID);
         g_pCompositor->updateAllWindowsAnimatedDecorationValues();
+
+        g_pEventManager->postEvent(SHyprIPCEvent{"togglegroup", "1"});
     }
 }
 
@@ -852,6 +854,8 @@ void CWindow::destroyGroup() {
         g_pCompositor->updateWorkspaceSpecialRenderData(workspaceID());
         g_pLayoutManager->getCurrentLayout()->recalculateMonitor(m_iMonitorID);
         g_pCompositor->updateAllWindowsAnimatedDecorationValues();
+
+        g_pEventManager->postEvent(SHyprIPCEvent{"togglegroup", "0"});
         return;
     }
 
@@ -883,6 +887,8 @@ void CWindow::destroyGroup() {
     g_pCompositor->updateWorkspaceSpecialRenderData(workspaceID());
     g_pLayoutManager->getCurrentLayout()->recalculateMonitor(m_iMonitorID);
     g_pCompositor->updateAllWindowsAnimatedDecorationValues();
+
+    g_pEventManager->postEvent(SHyprIPCEvent{"togglegroup", "0"});
 }
 
 PHLWINDOW CWindow::getGroupHead() {
